@@ -996,3 +996,43 @@ h2 em {
     border-bottom: 1px solid #d8c19b;
     padding-bottom: 6px;
 }
+
+
+/* DRESS CODE VERTICAL COLORS */
+
+.dress-card .dress-color-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 35px;
+}
+
+.dress-card .dress-color-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.dress-card .dress-color-circle {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.dress-card .dress-color-item>span:last-child {
+    font-size: 15px;
+    color: #183547;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+@media (max-width: 768px) {
+    .dress-card .dress-color-list {
+        gap: 10px;
+        margin-top: 25px;
+    }
+}
