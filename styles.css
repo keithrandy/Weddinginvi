@@ -1453,7 +1453,7 @@ h2 em {
         bottom: 0;
         left: 18px;
         right: 18px;
-        height: 10%;
+        height: 1%;
         background: linear-gradient(to bottom,
                 transparent 0%,
                 rgba(255, 255, 255, 0.25) 60%,
@@ -1620,7 +1620,7 @@ h2 em {
 
     right: 18px;
 
-    height: 20%;
+    height: 5%;
 
     background: linear-gradient(to bottom,
 
@@ -1702,4 +1702,28 @@ h2 em {
 
     }
 
+}
+
+@media (max-width: 768px) {
+    .event-grid>.event-card.dress-card .event-image {
+        height: auto;
+    }
+
+    .event-grid>.event-card.dress-card .event-image img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+}
+
+@media (max-width: 768px) {
+    .event-grid>.event-card.dress-card .event-image {
+        height: auto;
+    }
+
+    .event-grid>.event-card.dress-card .event-image img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
 }
