@@ -1425,15 +1425,44 @@ h2 em {
 
 /* Small-screen adjustment */
 
+
+/* MOBILE: SHOW THE ENTIRE DRESS CODE PHOTO */
+
 @media (max-width: 768px) {
 
-    .event-grid>.event-card:nth-child(-n+2) .event-content {
+    .event-grid>.event-card.dress-card .event-image {
+        width: 100%;
+        height: auto;
+        padding: 18px 18px 0;
+        overflow: hidden;
+        position: relative;
+    }
 
-        padding: 26px;
+    .event-grid>.event-card.dress-card .event-image img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        object-position: center;
+    }
 
+    /* Fade only the bottom 10% */
+    .event-grid>.event-card.dress-card .event-image::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 18px;
+        right: 18px;
+        height: 10%;
+        background: linear-gradient(to bottom,
+                transparent 0%,
+                rgba(255, 255, 255, 0.25) 60%,
+                #ffffff 100%);
+        pointer-events: none;
     }
 
 }
+
 
 /* Keep both maps aligned on desktop */
 
