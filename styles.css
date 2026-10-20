@@ -950,7 +950,6 @@ h2 em {
     display: block;
     width: 100%;
     height: 240px;
-    border: 1px solid #d8c19b !important;
     border-radius: 4px;
 }
 
@@ -1007,29 +1006,6 @@ h2 em {
     margin-top: 35px;
 }
 
-.dress-card .dress-color-item {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 12px 0;
-    border-bottom: 1px solid #eaeaea;
-}
-
-.dress-card .dress-color-circle {
-    width: 48px;
-    height: 48px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-}
-
-.dress-card .dress-color-item>span:last-child {
-    font-size: 15px;
-    color: #183547;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-}
-
 @media (max-width: 768px) {
     .dress-card .dress-color-list {
         gap: 10px;
@@ -1069,4 +1045,150 @@ h2 em {
             transparent,
             #ffffff);
     pointer-events: none;
+}
+
+/* DRESS CODE CARD - PHOTO ONLY */
+
+.dress-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #d8c19b;
+}
+
+.dress-card .event-image {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    /* adjust if you want taller/shorter */
+    padding: 18px 18px 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.dress-card .event-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* so the color list image is fully visible */
+    object-position: top center;
+    background: #ffffff;
+}
+
+/* 80% visible photo, 20% fade into white */
+.dress-card .event-image::after {
+    content: "";
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 0;
+    height: 20%;
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.65) 55%,
+            #ffffff 100%);
+    pointer-events: none;
+}
+
+.dress-card .event-content {
+    padding: 26px 35px 40px;
+    height: 320px;
+}
+
+.dress-card .event-content h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.dress-card .event-value {
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+/* DRESS CODE CARD - IMAGE FIX */
+
+.event-grid .dress-card .event-image {
+    position: relative;
+    width: 100%;
+    height: 650px;
+    padding: 18px 18px 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.event-grid .dress-card .event-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* Fade only the bottom 20% */
+.event-grid .dress-card .event-image::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 18px;
+    right: 18px;
+    height: 10%;
+
+    background: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(255, 255, 255, 0.5) 50%,
+            #ffffff 100%);
+
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .event-grid .dress-card .event-image {
+        height: 300px;
+    }
+}
+
+/* Move Dress Code text downward */
+
+.event-grid .dress-card .event-content {
+    padding-top: 70px;
+}
+
+@media (max-width: 768px) {
+    .event-grid .dress-card .event-content {
+        padding-top: 40px;
+    }
+}
+
+/* Stop the event cards from stretching */
+
+.event-grid {
+    align-items: start;
+}
+
+.event-grid .event-card {
+    height: auto;
+    align-self: start;
+}
+
+.event-grid .event-content {
+    padding-bottom: 25px;
+}
+
+/* FIX DRESS CODE CARD HEIGHT */
+
+.event-grid>.dress-card {
+    height: auto !important;
+    min-height: 0 !important;
+    align-self: start;
+}
+
+.event-grid>.dress-card .event-content {
+    flex: 0 0 auto;
+    height: auto;
+    min-height: 0;
+    padding-bottom: 30px;
 }
