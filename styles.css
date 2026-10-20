@@ -1036,3 +1036,37 @@ h2 em {
         margin-top: 25px;
     }
 }
+
+
+/* ALIGN DRESS CODE PHOTO WITH OTHER CARDS */
+
+.event-grid>.dress-card .event-image {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    padding: 18px 18px 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.event-grid>.dress-card .event-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Matching white fade */
+.event-grid>.dress-card .event-image::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 18px;
+    right: 18px;
+    height: 90px;
+    background: linear-gradient(to bottom,
+            transparent,
+            #ffffff);
+    pointer-events: none;
+}
