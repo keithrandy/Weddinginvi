@@ -1192,3 +1192,55 @@ h2 em {
     min-height: 0;
     padding-bottom: 30px;
 }
+
+
+/* MOBILE FIX - WEDDING DETAIL CARDS */
+
+@media (max-width: 768px) {
+
+    .event-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+        width: 100%;
+    }
+
+    .event-grid>.event-card {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    /* Fix Dress Code card layout */
+    .event-grid>.dress-card {
+        display: flex;
+        flex-direction: column;
+        height: auto !important;
+        min-height: 0 !important;
+    }
+
+    .event-grid>.dress-card .event-image {
+        width: 100%;
+        height: 420px;
+        box-sizing: border-box;
+        padding: 18px 18px 0;
+        overflow: hidden;
+    }
+
+    .event-grid>.dress-card .event-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+    }
+
+    .event-grid>.dress-card .event-content {
+        width: 100%;
+        flex: none !important;
+        padding: 28px 24px 35px;
+        box-sizing: border-box;
+    }
+}
