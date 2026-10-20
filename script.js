@@ -3,7 +3,7 @@
    Example: '2027-05-16T15:00:00+08:00'
 */
 const SETTINGS = {
-  weddingDate: '', // Leave empty until your wedding date is confirmed
+  weddingDate: '2026-12-12T10:30:00+08:00', // Leave empty until your wedding date is confirmed
   rsvpEmail: '' // Example: 'your-email@example.com' (must be a real inbox)
 };
 
@@ -27,7 +27,15 @@ function updateCountdown() {
     countdownStatus.textContent = 'Please enter a valid wedding date in script.js.';
     return;
   }
-  const label = new Intl.DateTimeFormat('en-PH', {month:'long', day:'numeric', year:'numeric', timeZone:'Asia/Manila'}).format(target);
+  const label = new Intl.DateTimeFormat('en-PH', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+    timeZone: 'Asia/Manila'
+  }).format(target);;
   document.querySelector('[data-wedding-date-label]').textContent = label.toUpperCase();
   const difference = target.getTime() - Date.now();
   if (difference <= 0) {
@@ -36,11 +44,11 @@ function updateCountdown() {
     return;
   }
   countdownStatus.textContent = `Counting down to ${label}`;
-  const values = [Math.floor(difference/86400000), Math.floor(difference/3600000)%24, Math.floor(difference/60000)%60, Math.floor(difference/1000)%60];
-  ids.forEach((id,index) => document.getElementById(id).textContent = String(values[index]).padStart(2,'0'));
+  const values = [Math.floor(difference / 86400000), Math.floor(difference / 3600000) % 24, Math.floor(difference / 60000) % 60, Math.floor(difference / 1000) % 60];
+  ids.forEach((id, index) => document.getElementById(id).textContent = String(values[index]).padStart(2, '0'));
 }
 updateCountdown();
-if (SETTINGS.weddingDate) setInterval(updateCountdown,1000);
+if (SETTINGS.weddingDate) setInterval(updateCountdown, 1000);
 
 const rsvpForm = document.getElementById('rsvp-form');
 const formMessage = document.getElementById('form-message');
