@@ -191,38 +191,114 @@
         </section>
 
         <section class="section rsvp-section" id="rsvp">
-            <div class="container rsvp-grid">
-                <div>
-                    <p class="eyebrow"> YOU ARE EXCLUSIVELY INVITED</p>
-                    <h2>Kindly RSVP</h2>
-                    <p>Your presence is the greatest gift. Please let us know whether you can celebrate with us.</p>
-                    <div class="rsvp-note"><span>✉</span>
-                        <p>RSVP deadline: <strong>[RSVP deadline]</strong><br />For questions: <strong>[Contact
-                                details]</strong></p>
+
+            <div class="wedding-rsvp">
+                <form id="weddingRsvpForm">
+                    <div class="rsvp-field">
+
+                        <div class="rsvp-intro">
+                            <span class="rsvp-eyebrow">ALTHEA & KEITH</span>
+
+                            <h2>Exclusively Invites You</h2>
+
+                            <p>
+                                Your presence would make our special day even more
+                                meaningful. Kindly let us know if you'll be joining
+                                us as we celebrate our love and the beginning of eternity together
+                            </p>
+
+                            <span class="rsvp-date">DECEMBER 12, 2026</span>
+                        </div>
+
+                        <label for="rsvpName">Full Name *</label>
+                        <input type="text" id="rsvpName" name="full_name" placeholder="Your full name"
+                            autocomplete="name" required>
                     </div>
-                </div>
-                <form id="rsvp-form" class="rsvp-form"><label for="guest-name">Your full name</label><input
-                        id="guest-name" name="name" type="text" placeholder="Enter your full name" autocomplete="name"
-                        required maxlength="100" /><label for="attendance">Will you attend?</label><select
-                        id="attendance" name="attendance" required>
-                        <option value="">Please select</option>
-                        <option value="Joyfully accepts">Joyfully accepts</option>
-                        <option value="Regretfully declines">Regretfully declines</option>
-                    </select><label for="guest-count">Number of guests (including you)</label><select id="guest-count"
-                        name="guests" required>
-                        <option value="">Please select</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select><label for="message">A note for the couple <span>(optional)</span></label><textarea
-                        id="message" name="message" rows="4" maxlength="500"
-                        placeholder="Share a little message..."></textarea><button class="btn btn-primary submit"
-                        type="submit">Prepare RSVP <span aria-hidden="true">↗</span></button>
-                    <p class="form-message" id="form-message" role="status" aria-live="polite">This demo prepares an
-                        email; it does not store guest responses online.</p>
+
+                    <fieldset class="rsvp-field">
+                        <legend>Will you join us? *</legend>
+
+                        <label class="rsvp-choice">
+                            <input type="radio" name="attendance" value="Yes" required>
+                            Joyfully accepts
+                        </label>
+
+                        <label class="rsvp-choice">
+                            <input type="radio" name="attendance" value="No" required>
+                            Regretfully declines
+                        </label>
+                    </fieldset>
+
+                    <!-- Appears only when Yes is selected -->
+                    <div id="rsvpYesFields" hidden>
+                        <div class="rsvp-field">
+                            <label for="rsvpEmail">
+                                Email Address *
+                            </label>
+                            <input type="email" id="rsvpEmail" name="email" placeholder="you@example.com"
+                                autocomplete="email">
+                            <small>For wedding updates and confirmation.</small>
+                        </div>
+
+                        <fieldset class="rsvp-field">
+                            <legend>
+                                Does your invitation include your children?
+                            </legend>
+
+                            <p class="rsvp-note">
+                                Due to limited seating, we can only
+                                accommodate children personally invited
+                                by the couple.
+                            </p>
+
+                            <label class="rsvp-choice">
+                                <input type="radio" name="children_invited" value="Yes">
+                                Yes, my children are invited
+                            </label>
+
+                            <label class="rsvp-choice">
+                                <input type="radio" name="children_invited" value="No" checked>
+                                No / Not applicable
+                            </label>
+                        </fieldset>
+
+                        <div class="rsvp-field" id="rsvpChildCount" hidden>
+                            <label for="rsvpChildrenNumber">
+                                How many invited children will attend?
+                            </label>
+
+                            <select id="rsvpChildrenNumber" name="children_attending">
+                                <option value="">Select number</option>
+                                <option value="1">1 child</option>
+                                <option value="2">2 children</option>
+                                <option value="3">3 children</option>
+                                <option value="4">4 children</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Appears only when No is selected -->
+                    <div class="rsvp-decline-message" id="rsvpNoMessage" hidden>
+                        We completely understand and appreciate
+                        you taking the time to respond.
+                        Although we'll miss you, thank you
+                        for being part of our lives.
+                    </div>
+
+                    <button type="submit" id="rsvpSubmit" class="rsvp-submit" hidden>
+                        Submit RSVP
+                    </button>
+
+                    <p id="rsvpError" class="rsvp-error" role="alert" hidden></p>
                 </form>
+
+                <!-- Appears after successful submission -->
+                <div id="rsvpSuccess" class="rsvp-success" role="status" hidden>
+                    <h3>Thank You!</h3>
+                    <p id="rsvpSuccessMessage"></p>
+                </div>
             </div>
+
         </section>
     </main>
 

@@ -2436,3 +2436,187 @@ h2 em {
         object-fit: contain;
     }
 }
+
+/* RSVP INTRO DESIGN */
+
+.rsvp-intro {
+    text-align: center;
+    max-width: 580px;
+    margin: 0 auto 55px;
+}
+
+.rsvp-eyebrow {
+    display: block;
+    color: #819cac;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.rsvp-intro h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(30px, 4vw, 42px);
+    font-weight: 400;
+    line-height: 1.25;
+    color: #283b48;
+    margin: 20px 0 22px;
+}
+
+.rsvp-intro p {
+    font-family: 'DM Sans', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.9;
+    color: #657682;
+    margin: 0 0 28px;
+}
+
+.rsvp-date {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #819cac;
+}
+
+/* MOBILE ADJUSTMENTS */
+
+@media (max-width: 600px) {
+    .rsvp-intro {
+        margin-bottom: 40px;
+        padding: 0 10px;
+    }
+
+    .rsvp-intro h2 {
+        font-size: 32px;
+        margin: 18px 0;
+    }
+
+    .rsvp-intro p {
+        font-size: 13px;
+        line-height: 1.8;
+    }
+}
+
+
+/* WEDDING RSVP */
+
+.wedding-rsvp {
+    width: min(100%, 520px);
+    margin: 0 auto;
+    color: #283b48;
+    font-family: "DM Sans", sans-serif;
+}
+
+.wedding-rsvp [hidden] {
+    display: none !important;
+}
+
+.wedding-rsvp .rsvp-field {
+    border: 0;
+    padding: 0;
+    margin: 0 0 25px;
+    min-width: 0;
+}
+
+.wedding-rsvp legend,
+.wedding-rsvp .rsvp-field>label:not(.rsvp-choice) {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.wedding-rsvp input[type="text"],
+.wedding-rsvp input[type="email"],
+.wedding-rsvp select {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 15px;
+    border: 1px solid #d6e0e6;
+    border-radius: 6px;
+    background: #fff;
+    color: #283b48;
+    font: inherit;
+}
+
+.wedding-rsvp input:focus,
+.wedding-rsvp select:focus {
+    outline: 2px solid #819cac;
+    outline-offset: 2px;
+}
+
+.wedding-rsvp .rsvp-choice {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    border: 1px solid #d6e0e6;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.wedding-rsvp input[type="radio"] {
+    accent-color: #536f81;
+}
+
+.wedding-rsvp small,
+.wedding-rsvp .rsvp-note {
+    display: block;
+    margin-top: 8px;
+    color: #657682;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.wedding-rsvp .rsvp-decline-message {
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    background: #eaf0f3;
+    border-radius: 6px;
+    line-height: 1.7;
+}
+
+.wedding-rsvp .rsvp-submit {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 6px;
+    background: #536f81;
+    color: white;
+    font: inherit;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.wedding-rsvp .rsvp-submit:hover {
+    background: #405a6c;
+}
+
+.wedding-rsvp .rsvp-submit:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.wedding-rsvp .rsvp-success {
+    text-align: center;
+    padding: 35px 20px;
+    background: #eaf0f3;
+    border-radius: 8px;
+    line-height: 1.8;
+}
+
+.wedding-rsvp .rsvp-success h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 30px;
+    font-weight: 400;
+    margin: 0 0 15px;
+}
+
+.wedding-rsvp .rsvp-error {
+    margin-top: 15px;
+    color: #a83232;
+    font-size: 13px;
+}
