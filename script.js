@@ -55,173 +55,65 @@ if (SETTINGS.weddingDate) setInterval(updateCountdown, 1000);
    WEDDING RSVP FORM
 ================================= */
 
-// Find the RSVP form in HTML
+/* RSVP - SHOW AND HIDE QUESTIONS */
+
 const rsvpForm = document.getElementById("weddingRsvpForm");
 
 if (rsvpForm) {
-
-  // Find the sections we want to show or hide
   const yesFields = document.getElementById("rsvpYesFields");
   const noMessage = document.getElementById("rsvpNoMessage");
   const childCount = document.getElementById("rsvpChildCount");
   const emailField = document.getElementById("rsvpEmail");
   const childNumber = document.getElementById("rsvpChildrenNumber");
   const submitButton = document.getElementById("rsvpSubmit");
-  const errorMessage = document.getElementById("rsvpError");
 
-  // Formspree connection (we'll add the real ID later)
-
-  const RSVP_ENDPOINT = "https://formspree.io/f/xzeebnwj";
-
-
-  // Find the selected radio button
   function getAnswer(name) {
-    const selected = rsvpForm.querySelector(
+    return rsvpForm.querySelector(
       `input[name="${name}"]:checked`
-    );
-
-    return selected ? selected.value : "";
+    )?.value || "";
   }
 
-  // Show or hide the children question
   function updateChildren() {
-    const showChildren =
+    const show =
       getAnswer("attendance") === "Yes" &&
       getAnswer("children_invited") === "Yes";
 
-    childCount.hidden = !showChildren;
-    childNumber.required = showChildren;
-    childNumber.disabled = !showChildren;
+    childCount.hidden = !show;
+    childNumber.required = show;
+    childNumber.disabled = !show;
 
-    if (!showChildren) {
-      childNumber.value = "";
-    }
+    if (!show) childNumber.value = "";
   }
 
-  // Show different fields for Yes and No
   function updateAttendance() {
     const answer = getAnswer("attendance");
+    const isYes = answer === "Yes";
 
-    yesFields.hidden = answer !== "Yes";
+    yesFields.hidden = !isYes;
     noMessage.hidden = answer !== "No";
 
-    emailField.required = answer === "Yes";
-    emailField.disabled = answer !== "Yes";
+    emailField.required = isYes;
+    emailField.disabled = !isYes;
 
     submitButton.hidden = !answer;
-
-    submitButton.textContent =
-      answer === "Yes" ? "Submit RSVP" : "Send Response";
+    submitButton.textContent = isYes
+      ? "Submit RSVP"
+      : "Send Response";
 
     updateChildren();
   }
 
-  // Run when someone chooses Yes or No
   rsvpForm.querySelectorAll(
     'input[name="attendance"]'
   ).forEach(radio => {
     radio.addEventListener("change", updateAttendance);
   });
 
-  // Run when someone answers the children question
   rsvpForm.querySelectorAll(
     'input[name="children_invited"]'
   ).forEach(radio => {
     radio.addEventListener("change", updateChildren);
   });
 
-  // Set the correct starting appearance
   updateAttendance();
-
-  // Run when the guest submits the form
-  rsvpForm.addEventListener("submit", async function (event) {
-
-    // Prevent the page from refreshing
-    event.preventDefault();
-
-    // Check required fields
-    if (!rsvpForm.reportValidity()) return;
-
-    // Don't submit until Formspree is connected
-    if (RSVP_ENDPOINT.includes("YOUR_FORM_ID")) {
-      errorMessage.textContent =
-        "The RSVP form is not connected yet.";
-      errorMessage.hidden = false;
-      return;
-    }
-
-    const guestName =
-      document.getElementById("rsvpName").value.trim();
-
-    const attendance = getAnswer("attendance");
-
-    // Prepare the response information
-    const details = {
-      full_name: guestName,
-      attendance: attendance,
-      email: attendance === "Yes" ? emailField.value : "",
-      children_invited: attendance === "Yes"
-        ? getAnswer("children_invited")
-        : "Not applicable",
-      children_attending:
-        attendance === "Yes" &&
-          getAnswer("children_invited") === "Yes"
-          ? childNumber.value
-          : "0"
-    };
-
-    // Temporarily disable the button
-    submitButton.disabled = true;
-    submitButton.textContent = "Sending...";
-    errorMessage.hidden = true;
-
-    try {
-      // Send the RSVP to Formspree
-      const response = await fetch(RSVP_ENDPOINT, {
-        method: "POST",
-        body: JSON.stringify(details),
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error("Could not submit RSVP");
-      }
-
-      // Show the thank-you screen
-      const successMessage =
-        document.getElementById("rsvpSuccessMessage");
-
-      if (attendance === "Yes") {
-        successMessage.textContent =
-          `Thank you, ${guestName}! We're delighted
-          you'll be celebrating with us.
-          See you on December 12, 2026!`;
-      } else {
-        successMessage.textContent =
-          `Thank you, ${guestName}! We completely
-          understand and appreciate your response.
-          Although we'll miss you, we're grateful
-          to have you in our lives.`;
-      }
-
-      rsvpForm.hidden = true;
-
-      document.getElementById("rsvpSuccess").hidden = false;
-
-    } catch (error) {
-      errorMessage.textContent =
-        "Something went wrong. Please try again.";
-      errorMessage.hidden = false;
-
-    } finally {
-      submitButton.disabled = false;
-      submitButton.textContent =
-        attendance === "Yes"
-          ? "Submit RSVP"
-          : "Send Response";
-    }
-  });
 }

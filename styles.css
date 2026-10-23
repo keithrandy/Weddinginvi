@@ -2620,3 +2620,66 @@ h2 em {
     color: #a83232;
     font-size: 13px;
 }
+
+
+/* RSVP DEADLINE AND CONTACT */
+
+/* RSVP INFO - LEFT SIDE */
+
+.rsvp-info {
+    position: absolute;
+    left: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    width: 260px;
+    padding-top: 20px;
+    position: relative;
+}
+
+.rsvp-info-icon {
+    color: #536f81;
+    flex-shrink: 0;
+}
+
+.rsvp-info-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.rsvp-info-text p {
+    margin: 0 0 8px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #657682;
+}
+
+.rsvp-info-text strong,
+.rsvp-info-text a {
+    color: #536f81;
+    font-weight: 600;
+}
+
+.rsvp-info-text a {
+    text-decoration: none;
+}
+
+.rsvp-info-text a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .rsvp-info {
+        gap: 16px;
+        margin-top: 35px;
+        padding-top: 22px;
+    }
+
+    .rsvp-info-text p {
+        font-size: 12px;
+    }
+}
